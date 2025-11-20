@@ -27,7 +27,12 @@ jobs:
 
       # Setup sonar-scanner
       - name: Setup SonarQube
-        uses: warshant/setup-sona-scanner@v7
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          organization: "<your-org-key>"
+          projectKey: "<your-project-key>"
+          projectName: "<your-project-name>"
+          token: ${{ secrets.SONAR_TOKEN }}
 
       # Run sonar-scanner
       - name: SonarQube Scan
