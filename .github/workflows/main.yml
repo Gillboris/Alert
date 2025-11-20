@@ -27,12 +27,8 @@ jobs:
 
       # Setup sonar-scanner
       - name: Setup SonarQube
-        uses: SonarSource/sonarcloud-github-action@v1
-        with:
-          organization: "<your-org-key>"
-          projectKey: "<your-project-key>"
-          projectName: "<your-project-name>"
-          token: ${{ secrets.SONAR_TOKEN }}
+        uses: warchant/setup-sonar-scanner@v7
+        
 
       # Run sonar-scanner
       - name: SonarQube Scan
@@ -47,7 +43,7 @@ jobs:
            -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml
            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/  
 
-      # Check Quality Gate
+      # Check the Quality Gate status.
       - name: SonarQube Quality Gate check
         id: sonarqube-quality-gate-check
         uses: sonarsource/sonarqube-quality-gate-action@master
