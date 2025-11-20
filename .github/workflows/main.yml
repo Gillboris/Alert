@@ -27,7 +27,7 @@ jobs:
 
       # Setup sonar-scanner
       - name: Setup SonarQube
-        uses: SonarSource/sonarcloud-github-action@v2
+        uses: SonarSource/sonarcloud-github-action@v1
         with:
           organization: "<your-org-key>"
           projectKey: "<your-project-key>"
