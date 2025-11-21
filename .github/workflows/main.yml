@@ -71,7 +71,9 @@ jobs:
             -Dsonar.login=4406b05b38114b46752011660eae758d0a7850c5 \
             -Dsonar.organization=vprofile-action89 \
             -Dsonar.projectKey=vprofile-action89 \
+            -Dsonar.exclusions=src/test/java/com/visualpathit/account/controllerTest/** \
             -Dsonar.sources=src/
+            
             # -Dsonar.junit.reportsPath=target/surefire-reports/ \
             # -Dsonar.jacoco.reportsPath=target/jacoco.exec \
             # -Dsonar.java.checkstyle.reportPaths=target/checkstyle-result.xml \
