@@ -29,23 +29,23 @@ jobs:
       - name: Setup SonarQube
         uses: warchant/setup-sonar-scanner@v7
       
-      - name: Test secrets
-        run: |
-          echo "SONAR_URL is set: ${SONAR_URL:+yes}"
-          echo "SONAR_ORGANIZATION is set: ${SONAR_ORGANIZATION:+yes}"
-          echo "SONAR_PROJECT_KEY is set: ${SONAR_PROJECT_KEY:+yes}"
-          # DO NOT echo SONAR_TOKEN directly!
-          if [ -z "$SONAR_TOKEN" ]; then
-            echo "SONAR_TOKEN is missing!"
-            exit 1
-          else
-            echo "SONAR_TOKEN is set"
-          fi
-        env:
-          SONAR_URL: ${{ secrets.SONAR_URL }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
-          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
+      # - name: Test secrets
+      #   run: |
+      #     echo "SONAR_URL is set: ${SONAR_URL:+yes}"
+      #     echo "SONAR_ORGANIZATION is set: ${SONAR_ORGANIZATION:+yes}"
+      #     echo "SONAR_PROJECT_KEY is set: ${SONAR_PROJECT_KEY:+yes}"
+      #     # DO NOT echo SONAR_TOKEN directly!
+      #     if [ -z "$SONAR_TOKEN" ]; then
+      #       echo "SONAR_TOKEN is missing!"
+      #       exit 1
+      #     else
+      #       echo "SONAR_TOKEN is set"
+      #     fi
+      #   env:
+      #     SONAR_URL: ${{ secrets.SONAR_URL }}
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      #     SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+      #     SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
         
       # Run sonar-scanner
       # - name: SonarQube Scan
@@ -64,10 +64,10 @@ jobs:
       - name: SonarCloud Scan
         run: |
           sonar-scanner \
-            -Dsonar.host.url=${{ secrets.SONAR_URL }} \
-            -Dsonar.login=${{ secrets.SONAR_TOKEN }} \
-            -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION }} \
-            -Dsonar.projectKey=${{ secrets.SONAR_PROJECT_KEY }} \
+            -Dsonar.host.url=https://sonarcloud.io \
+            -Dsonar.login=4406b05b38114b46752011660eae758d0a7850c5 \
+            -Dsonar.organization=vprofile-action89 \
+            -Dsonar.projectKey=vprofile-action89 \
             -Dsonar.sources=src/ \
             -Dsonar.junit.reportsPath=target/surefire-reports/ \
             -Dsonar.jacoco.reportsPath=target/jacoco.exec \
