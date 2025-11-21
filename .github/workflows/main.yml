@@ -14,7 +14,10 @@ jobs:
 
       - name: Maven test
         run: mvn test
-
+        
+      - name: Maven clean
+        run: mvn clean verify
+        
       - name: Checkstyle
         run: mvn checkstyle:checkstyle
 
