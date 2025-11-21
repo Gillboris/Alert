@@ -28,7 +28,24 @@ jobs:
       # Setup sonar-scanner
       - name: Setup SonarQube
         uses: warchant/setup-sonar-scanner@v7
-
+      
+      - name: Test secrets
+        run: |
+          echo "SONAR_URL is set: ${SONAR_URL:+yes}"
+          echo "SONAR_ORGANIZATION is set: ${SONAR_ORGANIZATION:+yes}"
+          echo "SONAR_PROJECT_KEY is set: ${SONAR_PROJECT_KEY:+yes}"
+          # DO NOT echo SONAR_TOKEN directly!
+          if [ -z "$SONAR_TOKEN" ]; then
+            echo "SONAR_TOKEN is missing!"
+            exit 1
+          else
+            echo "SONAR_TOKEN is set"
+          fi
+        env:
+          SONAR_URL: ${{ secrets.SONAR_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_ORGANIZATION: ${{ secrets.SONAR_ORGANIZATION }}
+          SONAR_PROJECT_KEY: ${{ secrets.SONAR_PROJECT_KEY }}
         
       # Run sonar-scanner
       # - name: SonarQube Scan
